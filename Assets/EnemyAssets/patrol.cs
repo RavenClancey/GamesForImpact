@@ -71,7 +71,7 @@ public class patrol : MonoBehaviour
         RaycastHit2D leftInfo = Physics2D.Raycast(groundDetect.position, Vector2.left, 0.1f, whatIsGroud);
 
 
-        if (groundInfo.collider == false && leftInfo.collider == true || groundInfo.collider == true && leftInfo.collider == true)
+        if (groundInfo.collider == false || groundInfo.collider == true && leftInfo.collider == true || groundInfo.collider == true && rightInfo.collider == true)
         {
             if (movingRight == true)
             {
@@ -109,5 +109,8 @@ public class patrol : MonoBehaviour
         Gizmos.DrawLine(groundDetect.position, new Vector2(groundDetect.position.x + 1.0f, groundDetect.position.y));
         Gizmos.color = Color.green;
         Gizmos.DrawLine(groundDetect.position, new Vector2(groundDetect.position.x - 1.0f, groundDetect.position.y));
+        
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(groundDetect.position, new Vector2(groundDetect.position.x, groundDetect.position.y - 0.1f));
     }
 }
