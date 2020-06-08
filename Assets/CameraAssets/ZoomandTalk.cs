@@ -12,6 +12,8 @@ public class ZoomandTalk : MonoBehaviour
     public float maxZoom;
     public float minZoom;
 
+ 
+
     private bool triggered = false;
 
    
@@ -24,6 +26,7 @@ public class ZoomandTalk : MonoBehaviour
     
         if (collision == playerCollider)
         {
+          
             expectedZoom = minZoom;
             PlayAudio();
         }
@@ -33,6 +36,7 @@ public class ZoomandTalk : MonoBehaviour
     {
         if (collision == playerCollider)
         {
+          
             expectedZoom = maxZoom;
         }
     }
@@ -41,15 +45,19 @@ public class ZoomandTalk : MonoBehaviour
     private void Update()
     {
         
-        if (expectedZoom > mainCamera.orthographicSize)
-        {
-            mainCamera.orthographicSize += zoomSpeed;
-        }
-        else if (expectedZoom < mainCamera.orthographicSize)
-        {
-            mainCamera.orthographicSize -= zoomSpeed;
-        }
-
+            if (expectedZoom > mainCamera.orthographicSize)
+            {
+            
+                mainCamera.orthographicSize += zoomSpeed;
+            
+            }
+            else if (expectedZoom < mainCamera.orthographicSize)
+            {
+           
+                mainCamera.orthographicSize -= zoomSpeed;
+            }
+            
+        
    
     }
 

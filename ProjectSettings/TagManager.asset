@@ -21,6 +21,7 @@ TagManager:
   - Player
   - Enemy
   - backwall
+  - trigger
   - ignore
   - Platforms
   - 
