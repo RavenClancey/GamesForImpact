@@ -41,11 +41,9 @@ public class playerScript : MonoBehaviour
 
         for (int i = 0; i < enemyCollider.Length; i++)
         {
-            if (enemyCollider[i].gameObject == GameObject.FindGameObjectWithTag("Enemy"))
+            if (Input.GetMouseButtonDown(0))
             {
-
-                scream.Play();
-                
+                scream.Play(); 
             }
         }
         
