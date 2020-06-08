@@ -9,11 +9,12 @@ public class patrol : MonoBehaviour
     private bool movingRight = true;
     public float bulletDelay = 100.0f;
     private float bulletDelayTimer = 100.0f;
+    public GameObject playerObject;
     
 
     public Transform groundDetect;
 
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
@@ -26,6 +27,7 @@ public class patrol : MonoBehaviour
         }
         
         movementCollision();
+
 
             
         
@@ -93,6 +95,7 @@ public class patrol : MonoBehaviour
         if (bulletDelayTimer == bulletDelay)
         {
             audioSource.Play();
+            playerObject.GetComponent<playerScript>().takeDamage(20);
             bulletDelayTimer = 0;
         }
         else
