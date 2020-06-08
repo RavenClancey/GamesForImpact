@@ -5,12 +5,16 @@ using UnityEngine;
 public class patrol : MonoBehaviour
 {
     public float speed;
-
+    public AudioSource audioSource;
     private bool movingRight = true;
+    public float bulletDelay = 100.0f;
+    private float bulletDelayTimer = 100.0f;
+    public GameObject playerObject;
+    
 
     public Transform groundDetect;
 
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
@@ -24,6 +28,7 @@ public class patrol : MonoBehaviour
         
         movementCollision();
 
+
             
         
     }
@@ -36,7 +41,8 @@ public class patrol : MonoBehaviour
         {
             if (visionInfoRight.collider.gameObject == GameObject.FindGameObjectWithTag("Player"))
             {
-               
+                
+                
                 shoot();
                 return (true);
             }
@@ -47,7 +53,7 @@ public class patrol : MonoBehaviour
         {
             if (visionInfoLeft.collider.gameObject == GameObject.FindGameObjectWithTag("Player"))
             {
-              
+                
                 shoot();
                 return (true);
             }
@@ -65,8 +71,8 @@ public class patrol : MonoBehaviour
     void movementCollision()
     {
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, 0.5f);
-        RaycastHit2D rightInfo = Physics2D.Raycast(groundDetect.position, Vector2.right, 1f);
-        RaycastHit2D leftInfo = Physics2D.Raycast(groundDetect.position, Vector2.left, 1f);
+        RaycastHit2D rightInfo = Physics2D.Raycast(groundDetect.position, Vector2.right, 1.0f);
+        RaycastHit2D leftInfo = Physics2D.Raycast(groundDetect.position, Vector2.left, 1.0f);
 
 
         if (groundInfo.collider == false || rightInfo.collider == true && rightInfo.collider.gameObject != GameObject.FindGameObjectWithTag("Player") || leftInfo.collider == true && leftInfo.collider.gameObject != GameObject.FindGameObjectWithTag("Player"))
@@ -86,8 +92,26 @@ public class patrol : MonoBehaviour
 
     void shoot()
     {
+        if (bulletDelayTimer == bulletDelay)
+        {
+            audioSource.Play();
+            playerObject.GetComponent<playerScript>().takeDamage(20);
+            bulletDelayTimer = 0;
+        }
+        else
+        {
+            bulletDelayTimer++;
+        }
         speed = 0;
         Debug.Log("BANG BANG");
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(groundDetect.position, new Vector2(groundDetect.position.x + 1.0f, groundDetect.position.y));
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(groundDetect.position, new Vector2(groundDetect.position.x - 1.0f, groundDetect.position.y));
     }
 }
