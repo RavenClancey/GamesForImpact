@@ -7,6 +7,8 @@ TagManager:
   - Fire
   - Enemy
   - DownWall
+  - Mouse
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,8 @@ TagManager:
   - Enemy
   - backwall
   - trigger
-  - 
+  - ignore
+  - Platforms
   - 
   - 
   - 

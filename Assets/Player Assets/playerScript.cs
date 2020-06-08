@@ -10,13 +10,16 @@ public class playerScript : MonoBehaviour
     public GameObject healthObject;
     public HealthBar healthBar;
 
-    //mouse move vars
+    //mouse pointer vars
     public GameObject mouseObject;
     private Vector3 MousePosition;
     public float moveSpeed = 10.0f;
+    public LayerMask enemyCollision;
+   
 
     //sound objects
-    private AudioSource fire;
+    public AudioSource fire;
+    public AudioSource scream;
 
     // Start is called before the first frame update
     void Start()
@@ -34,12 +37,22 @@ public class playerScript : MonoBehaviour
         MousePosition = Input.mousePosition;
         MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
         mouseObject.transform.position = Vector2.Lerp(transform.position, MousePosition, moveSpeed);
-        Collider2D Collider2D = Physics2D.OverlapCircle(mouseObject.transform.position, 1.0f);
+        Collider2D[] enemyCollider = Physics2D.OverlapCircleAll(mouseObject.transform.position, 1.0f, enemyCollision);
 
-        if (Input.GetMouseButtonDown(0) && Collider2D.gameObject == GameObject.FindGameObjectWithTag("Enemy"))
+        for (int i = 0; i < enemyCollider.Length; i++)
         {
-
+            if (Input.GetMouseButtonDown(0))
+            {
+                scream.Play(); 
+            }
         }
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            fire.Play();
+        }
+        
+       
     }
 
    public void takeDamage(int Damage)
@@ -47,5 +60,13 @@ public class playerScript : MonoBehaviour
         currentHealth -= Damage;
         healthBar.SetHealth(currentHealth);
         healthObject.GetComponent<playerHit>().flashImage();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(mouseObject.transform.position, 1.0f);
+       // Gizmos.color = Color.green;
+       // Gizmos.DrawLine(groundDetect.position, new Vector2(groundDetect.position.x - 1.0f, groundDetect.position.y));
     }
 }

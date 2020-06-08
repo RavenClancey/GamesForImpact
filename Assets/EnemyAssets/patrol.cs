@@ -10,6 +10,9 @@ public class patrol : MonoBehaviour
     public float bulletDelay = 100.0f;
     private float bulletDelayTimer = 100.0f;
     public GameObject playerObject;
+    public LayerMask whatIsGroud;
+    public LayerMask toDetect;
+    
     
 
     public Transform groundDetect;
@@ -26,38 +29,31 @@ public class patrol : MonoBehaviour
             speed = 4;
         }
         
-        movementCollision();
-
-
-            
-        
+        movementCollision();   
     }
 
     bool aggroVision()
     {
-        RaycastHit2D visionInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, 10f);
-        RaycastHit2D visionInfoRight = Physics2D.Raycast(transform.position, Vector2.right, 10f);
-        if (movingRight == true && visionInfoRight.collider == true)
+        RaycastHit2D visionInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, 10f, toDetect);
+        RaycastHit2D visionInfoRight = Physics2D.Raycast(transform.position, Vector2.right, 10f, toDetect);
+
+        if (movingRight == true && visionInfoRight.collider == true && visionInfoRight.collider.gameObject != GameObject.FindGameObjectWithTag("Platform"))
         {
             if (visionInfoRight.collider.gameObject == GameObject.FindGameObjectWithTag("Player"))
             {
-                
-                
                 shoot();
                 return (true);
             }
 
-
         }
-        else if (movingRight == false && visionInfoLeft.collider == true)
+        else if (movingRight == false && visionInfoLeft.collider == true && visionInfoLeft.collider.gameObject != GameObject.FindGameObjectWithTag("Platform"))
         {
             if (visionInfoLeft.collider.gameObject == GameObject.FindGameObjectWithTag("Player"))
             {
-                
+
                 shoot();
                 return (true);
             }
-
 
         }
         else
@@ -70,12 +66,12 @@ public class patrol : MonoBehaviour
 
     void movementCollision()
     {
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, 0.5f);
-        RaycastHit2D rightInfo = Physics2D.Raycast(groundDetect.position, Vector2.right, 1.0f);
-        RaycastHit2D leftInfo = Physics2D.Raycast(groundDetect.position, Vector2.left, 1.0f);
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, 0.5f, whatIsGroud);
+        RaycastHit2D rightInfo = Physics2D.Raycast(groundDetect.position, Vector2.right, 0.1f, whatIsGroud);
+        RaycastHit2D leftInfo = Physics2D.Raycast(groundDetect.position, Vector2.left, 0.1f, whatIsGroud);
 
 
-        if (groundInfo.collider == false || rightInfo.collider == true && rightInfo.collider.gameObject != GameObject.FindGameObjectWithTag("Player") || leftInfo.collider == true && leftInfo.collider.gameObject != GameObject.FindGameObjectWithTag("Player"))
+        if (groundInfo.collider == false && leftInfo.collider == true || groundInfo.collider == true && leftInfo.collider == true)
         {
             if (movingRight == true)
             {
@@ -92,7 +88,7 @@ public class patrol : MonoBehaviour
 
     void shoot()
     {
-        if (bulletDelayTimer == bulletDelay)
+        if (bulletDelayTimer >= bulletDelay)
         {
             audioSource.Play();
             playerObject.GetComponent<playerScript>().takeDamage(20);
