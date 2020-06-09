@@ -8,7 +8,7 @@ public class patrol : MonoBehaviour
     public AudioSource audioSource;
     private bool movingRight = true;
     public float bulletDelay = 100.0f;
-    private float bulletDelayTimer = 100.0f;
+    private float bulletDelayTimer = 0.0f;
     public GameObject playerObject;
     public LayerMask whatIsGroud;
     public LayerMask toDetect;
