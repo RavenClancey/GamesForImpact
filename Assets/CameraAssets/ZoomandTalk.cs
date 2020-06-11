@@ -6,6 +6,8 @@ public class ZoomandTalk : MonoBehaviour
 {
     public BoxCollider2D boxCollision;
     public BoxCollider2D playerCollider;
+    public SpriteRenderer mousePointer;
+    public GameObject player;
     public Camera mainCamera;
 
     public AudioSource VO;
@@ -21,22 +23,25 @@ public class ZoomandTalk : MonoBehaviour
 
     private float expectedZoom = 7;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-    
-        if (collision == playerCollider)
+ 
+       if (collision == playerCollider)
         {
-          
+            player.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>().m_MaxSpeed = 2;
+            mousePointer.enabled = false;
             expectedZoom = minZoom;
             PlayAudio();
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
+    
         if (collision == playerCollider)
         {
-          
+            player.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>().m_MaxSpeed = 5;
+            mousePointer.enabled = true;
             expectedZoom = maxZoom;
         }
     }
@@ -44,20 +49,25 @@ public class ZoomandTalk : MonoBehaviour
 
     private void Update()
     {
-        
-            if (expectedZoom > mainCamera.orthographicSize)
-            {
+        if (mainCamera.orthographicSize < minZoom)
+        {
+            mainCamera.orthographicSize = minZoom;
+        } 
+        else if (mainCamera.orthographicSize > maxZoom)
+        {
+            mainCamera.orthographicSize = maxZoom;
+        }
+        else  if (expectedZoom > mainCamera.orthographicSize)
+        {
             
-                mainCamera.orthographicSize += zoomSpeed;
+            mainCamera.orthographicSize += zoomSpeed;
             
-            }
-            else if (expectedZoom < mainCamera.orthographicSize)
-            {
+        }
+        else if (expectedZoom < mainCamera.orthographicSize)
+        {
            
-                mainCamera.orthographicSize -= zoomSpeed;
-            }
-            
-        
+            mainCamera.orthographicSize -= zoomSpeed;
+        }
    
     }
 

@@ -15,7 +15,8 @@ public class playerScript : MonoBehaviour
     private Vector3 MousePosition;
     public float moveSpeed = 10.0f;
     public LayerMask enemyCollision;
-   
+
+    
 
     //sound objects
     public AudioSource fire;
