@@ -51,8 +51,6 @@ public class playerScript : MonoBehaviour
         {
             fire.Play();
         }
-        
-       
     }
 
    public void takeDamage(int Damage)
