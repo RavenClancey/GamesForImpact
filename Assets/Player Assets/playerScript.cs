@@ -8,7 +8,7 @@ public class playerScript : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public GameObject healthObject;
-    public HealthBar healthBar;
+    
 
     //mouse pointer vars
     public GameObject mouseObject;
@@ -29,7 +29,7 @@ public class playerScript : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
+        
         Cursor.visible = false;
         mouseObject.GetComponent<SpriteRenderer>().enabled = false;
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -67,7 +67,7 @@ public class playerScript : MonoBehaviour
 
         if (zooming)
         {
-            if (mainCamera.orthographicSize > 5)
+            if (mainCamera.orthographicSize > 3)
             {
                 mainCamera.orthographicSize -= 0.05f;
             }
@@ -85,11 +85,9 @@ public class playerScript : MonoBehaviour
   
 
    public void takeDamage(int Damage)
-    {
+   {
         currentHealth -= Damage;
-        healthBar.SetHealth(currentHealth);
-        healthObject.GetComponent<playerHit>().flashImage();
-    }
+   }
 
     private void OnDrawGizmosSelected()
     {

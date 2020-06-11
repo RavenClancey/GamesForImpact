@@ -16,10 +16,6 @@ public class ZoomandTalk : MonoBehaviour
 
     private bool triggered = false;
 
-    [Range(0, 1)] [SerializeField] private float zoomSpeed = .36f;
-
-    private float expectedZoom = 7;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
        if (collision == playerCollider)

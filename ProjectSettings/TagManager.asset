@@ -55,6 +55,9 @@ TagManager:
   - name: Enemies
     uniqueID: 4129031981
     locked: 0
+  - name: BackWall
+    uniqueID: 97995823
+    locked: 0
   - name: Players
     uniqueID: 2081992977
     locked: 0

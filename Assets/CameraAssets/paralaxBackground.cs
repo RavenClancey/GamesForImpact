@@ -6,7 +6,7 @@ public class paralaxBackground : MonoBehaviour
 {
     private Transform cameraTransform;
     public Camera mainCamera;
-    [SerializeField] private Vector2 paralaxEffectMultiplyer;
+    [SerializeField] private Vector2 paralaxEffectMultiplyer = new Vector2(0.1f, 0.3f);
     private Vector3 lastCameraPosition;
     float lastCameraScale;
     // Start is called before the first frame update
