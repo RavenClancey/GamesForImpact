@@ -16,11 +16,14 @@ public class playerScript : MonoBehaviour
     public float moveSpeed = 10.0f;
     public LayerMask enemyCollision;
     public bool canFire = false;
-    private GameObject[] enemies;
+    [SerializeField] private GameObject[] enemies;
 
     //sound objects
     public AudioSource fire;
     public AudioSource scream;
+
+    public Camera mainCamera;
+    public bool zooming = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +36,7 @@ public class playerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    void Update()
     {
  
         MousePosition = Input.mousePosition;
@@ -42,24 +45,44 @@ public class playerScript : MonoBehaviour
             
         if (canFire)
         {
-
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
                 fire.Play();
             }
 
-            for (int i = 0; i < enemies.Length; i++)
+            if (enemies != null)
             {
-                if (enemies[i].GetComponent<EnemyHit>().HasCollided() == true)
+                for (int i = 0; i < enemies.Length; i++)
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    Debug.Log(enemies[i].gameObject.GetComponent<EnemyHit>().HasCollided());
+                    if (enemies[i].gameObject.GetComponent<EnemyHit>().HasCollided() == true && Input.GetMouseButtonDown(0))
                     {
                         scream.Play();
+                        enemies[i].transform.position = new Vector3(enemies[i].transform.position.x, enemies[i].transform.position.y - 500);
                     }
                 }
             }
+            
         }
+
+        if (zooming)
+        {
+            if (mainCamera.orthographicSize > 5)
+            {
+                mainCamera.orthographicSize -= 0.05f;
+            }
+        }
+        else
+        {
+            if (mainCamera.orthographicSize < 7)
+            {
+                mainCamera.orthographicSize += 0.05f;
+            }
+        }
+
     }
+
+  
 
    public void takeDamage(int Damage)
     {
