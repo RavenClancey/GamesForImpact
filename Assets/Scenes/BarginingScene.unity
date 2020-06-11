@@ -2005,6 +2005,7 @@ MonoBehaviour:
   scream: {fileID: 576956294}
   mainCamera: {fileID: 323421686}
   zooming: 0
+  spawn: {x: 0, y: 0, z: 0}
 --- !u!61 &576956307
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6547,7 +6548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -802, y: -239.5}
+  m_AnchoredPosition: {x: -1597, y: -239.5}
   m_SizeDelta: {x: 153.9845, y: 24.571983}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051859926
