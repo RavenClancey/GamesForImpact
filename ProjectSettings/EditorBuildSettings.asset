@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BarginingScene.unity
     guid: 40729059c7df6e740a8534ea12d7b6a5
+  - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: e6bee91935f1ff1409c1824aa2b82b01
   m_configObjects: {}
