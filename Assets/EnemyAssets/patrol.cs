@@ -92,6 +92,7 @@ public class patrol : MonoBehaviour
         {
             audioSource.Play();
             playerObject.GetComponent<playerScript>().takeDamage(20);
+            playerObject.transform.position = new Vector3(playerObject.GetComponent<playerScript>().spawn.x, playerObject.GetComponent<playerScript>().spawn.y, playerObject.GetComponent<playerScript>().spawn.z);
             bulletDelayTimer = 0;
         }
         else

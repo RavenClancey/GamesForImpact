@@ -24,12 +24,13 @@ public class playerScript : MonoBehaviour
 
     public Camera mainCamera;
     public bool zooming = false;
+    public Vector3 spawn;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        
+        spawn = transform.position;
         Cursor.visible = false;
         mouseObject.GetComponent<SpriteRenderer>().enabled = false;
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
