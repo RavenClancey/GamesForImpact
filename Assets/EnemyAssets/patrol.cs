@@ -66,7 +66,7 @@ public class patrol : MonoBehaviour
 
     void movementCollision()
     {
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, 0.5f, whatIsGroud);
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, 1f, whatIsGroud);
         RaycastHit2D rightInfo = Physics2D.Raycast(groundDetect.position, Vector2.right, 0.1f, whatIsGroud);
         RaycastHit2D leftInfo = Physics2D.Raycast(groundDetect.position, Vector2.left, 0.1f, whatIsGroud);
 

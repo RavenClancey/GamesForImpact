@@ -15,8 +15,8 @@ public class playerScript : MonoBehaviour
     private Vector3 MousePosition;
     public float moveSpeed = 10.0f;
     public LayerMask enemyCollision;
-
-    
+    public bool canFire = false;
+    private GameObject[] enemies;
 
     //sound objects
     public AudioSource fire;
@@ -28,29 +28,36 @@ public class playerScript : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
         Cursor.visible = false;
-        
-
+        mouseObject.GetComponent<SpriteRenderer>().enabled = false;
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
+ 
         MousePosition = Input.mousePosition;
         MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
         mouseObject.transform.position = Vector2.Lerp(transform.position, MousePosition, moveSpeed);
-        Collider2D[] enemyCollider = Physics2D.OverlapCircleAll(mouseObject.transform.position, 1.0f, enemyCollision);
+            
+        if (canFire)
+        {
 
-        for (int i = 0; i < enemyCollider.Length; i++)
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
             {
-                scream.Play(); 
+                fire.Play();
             }
-        }
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            fire.Play();
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                if (enemies[i].GetComponent<EnemyHit>().HasCollided() == true)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        scream.Play();
+                    }
+                }
+            }
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZoomandTalk : MonoBehaviour
 {
-    public BoxCollider2D boxCollision;
+   // public BoxCollider2D boxCollision;
     public BoxCollider2D playerCollider;
     public SpriteRenderer mousePointer;
     public GameObject player;
@@ -14,8 +14,6 @@ public class ZoomandTalk : MonoBehaviour
     public float maxZoom;
     public float minZoom;
 
- 
-
     private bool triggered = false;
 
    
@@ -23,16 +21,16 @@ public class ZoomandTalk : MonoBehaviour
 
     private float expectedZoom = 7;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
  
        if (collision == playerCollider)
-        {
+       {
             player.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>().m_MaxSpeed = 2;
-            mousePointer.enabled = false;
+            
             expectedZoom = minZoom;
             PlayAudio();
-        }
+       }
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -41,7 +39,7 @@ public class ZoomandTalk : MonoBehaviour
         if (collision == playerCollider)
         {
             player.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>().m_MaxSpeed = 5;
-            mousePointer.enabled = true;
+            
             expectedZoom = maxZoom;
         }
     }
