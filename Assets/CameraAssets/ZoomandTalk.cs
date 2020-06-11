@@ -5,20 +5,18 @@ using UnityEngine;
 public class ZoomandTalk : MonoBehaviour
 {
    
-    public BoxCollider2D playerCollider;
-    public SpriteRenderer mousePointer;
+    
     public GameObject player;
-    public Camera mainCamera;
+
 
     public AudioSource VO;
-    public float maxZoom;
-    public float minZoom;
+
 
     private bool triggered = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       if (collision == playerCollider)
+       if (collision == player.gameObject.GetComponent<BoxCollider2D>())
        {
             player.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>().m_MaxSpeed = 2;
 
@@ -31,7 +29,7 @@ public class ZoomandTalk : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
     
-        if (collision == playerCollider)
+        if (collision == player.gameObject.GetComponent<BoxCollider2D>())
         {
             player.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>().m_MaxSpeed = 5;
 
