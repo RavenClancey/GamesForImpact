@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class acceptanceScript : MonoBehaviour
 {
@@ -10,10 +12,14 @@ public class acceptanceScript : MonoBehaviour
     
 
     public AudioSource sound2;
-
+    
     public AudioSource sound3;
 
     public AudioSource sound4;
+
+    public AudioSource music;
+
+    public Text fin;
 
     private bool played1 = false;
     private bool played2 = false;
@@ -44,6 +50,22 @@ public class acceptanceScript : MonoBehaviour
         {
             sound4.Play();
             played4 = true;
+        }
+        if (timer > 1650 )
+        {
+  
+            var tempColor = fin.color;
+            tempColor.a += 0.02f;
+            fin.color = tempColor;
+
+            music.volume -= 0.001f;
+            
+        }
+
+        if (timer > 2000)
+        {
+            SceneManager.LoadScene("CreditsScene");
+          
         }
     }
 }
