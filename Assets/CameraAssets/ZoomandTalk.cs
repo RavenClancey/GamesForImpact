@@ -4,62 +4,41 @@ using UnityEngine;
 
 public class ZoomandTalk : MonoBehaviour
 {
-    public BoxCollider2D boxCollision;
-    public BoxCollider2D playerCollider;
-    public Camera mainCamera;
+   
+    
+    public GameObject player;
+
 
     public AudioSource VO;
-    public float maxZoom;
-    public float minZoom;
 
- 
 
     private bool triggered = false;
 
-   
-    [Range(0, 1)] [SerializeField] private float zoomSpeed = .36f;
-
-    private float expectedZoom = 7;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-    
-        if (collision == playerCollider)
-        {
-          
-            expectedZoom = minZoom;
+       if (collision == player.gameObject.GetComponent<BoxCollider2D>())
+       {
+            player.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>().m_MaxSpeed = 2;
+
+            player.GetComponent<playerScript>().zooming = true;
+
             PlayAudio();
-        }
+       }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision == playerCollider)
+    
+        if (collision == player.gameObject.GetComponent<BoxCollider2D>())
         {
-          
-            expectedZoom = maxZoom;
+            player.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>().m_MaxSpeed = 5;
+
+            player.GetComponent<playerScript>().zooming = false;
         }
     }
 
 
-    private void Update()
-    {
-        
-            if (expectedZoom > mainCamera.orthographicSize)
-            {
-            
-                mainCamera.orthographicSize += zoomSpeed;
-            
-            }
-            else if (expectedZoom < mainCamera.orthographicSize)
-            {
-           
-                mainCamera.orthographicSize -= zoomSpeed;
-            }
-            
-        
-   
-    }
+    
 
     private void PlayAudio()
     {

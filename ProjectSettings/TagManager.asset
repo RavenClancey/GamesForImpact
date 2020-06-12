@@ -42,8 +42,28 @@ TagManager:
   - 
   - 
   - 
-  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 392878449
+    locked: 0
+  - name: FX
+    uniqueID: 1643972619
+    locked: 0
+  - name: Enemies
+    uniqueID: 4129031981
+    locked: 0
+  - name: BackWall
+    uniqueID: 97995823
+    locked: 0
+  - name: Players
+    uniqueID: 2081992977
+    locked: 0
+  - name: Platform
+    uniqueID: 2550254905
+    locked: 0
+  - name: Foreground
+    uniqueID: 2264868217
     locked: 0

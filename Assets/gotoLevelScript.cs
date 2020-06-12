@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 public class gotoLevelScript : MonoBehaviour
 {
     public BoxCollider2D boxCollision;
-    public BoxCollider2D playerCollider;
+    public GameObject playerCollider;
+    public GameObject mousePointer;
 
     public string levelName;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision == playerCollider)
+        mousePointer.GetComponent<SpriteRenderer>().enabled = false;
+        playerCollider.gameObject.GetComponent<playerScript>().canFire = false;
+        
+        if (collision == playerCollider.gameObject.GetComponent<BoxCollider2D>())
         {
             LoadLevel(levelName);
            

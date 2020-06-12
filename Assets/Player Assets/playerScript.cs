@@ -8,57 +8,87 @@ public class playerScript : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public GameObject healthObject;
-    public HealthBar healthBar;
+    
 
     //mouse pointer vars
     public GameObject mouseObject;
     private Vector3 MousePosition;
     public float moveSpeed = 10.0f;
     public LayerMask enemyCollision;
-   
+    public bool canFire = false;
+    [SerializeField] private GameObject[] enemies;
 
     //sound objects
     public AudioSource fire;
     public AudioSource scream;
 
+    public Camera mainCamera;
+    public bool zooming = false;
+    public Vector3 spawn;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
+        spawn = transform.position;
         Cursor.visible = false;
-        
-
+        mouseObject.GetComponent<SpriteRenderer>().enabled = false;
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     // Update is called once per frame
     void Update()
     {
+ 
         MousePosition = Input.mousePosition;
         MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
         mouseObject.transform.position = Vector2.Lerp(transform.position, MousePosition, moveSpeed);
-        Collider2D[] enemyCollider = Physics2D.OverlapCircleAll(mouseObject.transform.position, 1.0f, enemyCollision);
-
-        for (int i = 0; i < enemyCollider.Length; i++)
+            
+        if (canFire)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                scream.Play(); 
+                fire.Play();
+            }
+
+            if (enemies != null)
+            {
+                for (int i = 0; i < enemies.Length; i++)
+                {
+                    Debug.Log(enemies[i].gameObject.GetComponent<EnemyHit>().HasCollided());
+                    if (enemies[i].gameObject.GetComponent<EnemyHit>().HasCollided() == true && Input.GetMouseButtonDown(0))
+                    {
+                        scream.Play();
+                        enemies[i].transform.position = new Vector3(enemies[i].transform.position.x, enemies[i].transform.position.y - 500);
+                    }
+                }
+            }
+            
+        }
+
+        if (zooming)
+        {
+            if (mainCamera.orthographicSize > 3)
+            {
+                mainCamera.orthographicSize -= 0.05f;
             }
         }
-        
-        if (Input.GetMouseButtonDown(0))
+        else
         {
-            fire.Play();
+            if (mainCamera.orthographicSize < 7)
+            {
+                mainCamera.orthographicSize += 0.05f;
+            }
         }
+
     }
 
+  
+
    public void takeDamage(int Damage)
-    {
+   {
         currentHealth -= Damage;
-        healthBar.SetHealth(currentHealth);
-        healthObject.GetComponent<playerHit>().flashImage();
-    }
+   }
 
     private void OnDrawGizmosSelected()
     {
