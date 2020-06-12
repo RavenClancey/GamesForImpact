@@ -7,7 +7,7 @@ public class playbutton : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("DenialScene");
+        SceneManager.LoadScene("Intro");
     }
 
     public void QuitGame()
