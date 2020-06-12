@@ -365,7 +365,7 @@ PrefabInstance:
     - target: {fileID: 4641278602422445939, guid: 239c9981691e2d441aeb6c3238cfad4a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.75
+      value: -7.06
       objectReference: {fileID: 0}
     - target: {fileID: 4641278602422445939, guid: 239c9981691e2d441aeb6c3238cfad4a,
         type: 3}
@@ -538,6 +538,12 @@ AudioSource:
 --- !u!61 &121668552 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6100000, guid: 87a2357765801c34292d6718d8b4d770,
+    type: 3}
+  m_PrefabInstance: {fileID: 1534480551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &121668553 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770,
     type: 3}
   m_PrefabInstance: {fileID: 1534480551}
   m_PrefabAsset: {fileID: 0}
@@ -1185,9 +1191,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702909991}
-  m_LocalRotation: {x: -0, y: -0, z: 0.20486385, w: 0.9787905}
-  m_LocalPosition: {x: 65.70005, y: 11.560043, z: 0}
-  m_LocalScale: {x: 4.533163, y: 5.401162, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.20486382, w: 0.97879046}
+  m_LocalPosition: {x: 65.70006, y: 11.560041, z: 0}
+  m_LocalScale: {x: 4.5331645, y: 5.401162, z: 1}
   m_Children: []
   m_Father: {fileID: 1368031327}
   m_RootOrder: 4
@@ -1202,7 +1208,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cef9d75529dd24e498cd94dfe81598c0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7e108c477fe856d47a97f55e8d2b89ee, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2019,7 +2025,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 308e00590701f794590df3b6917d4043, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0fe647c1cb33a6c459895094ce20b895, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2484,7 +2490,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9992ecaf96570e441a1f62c523eadf89, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4225eba9639a050498542cfb2ae24d4d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3176,6 +3182,87 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 232889728}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1400771529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1400771530}
+  - component: {fileID: 1400771531}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1400771530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400771529}
+  m_LocalRotation: {x: -0, y: -0, z: 0.022666968, w: 0.9997431}
+  m_LocalPosition: {x: 0.195, y: 0.171, z: 0}
+  m_LocalScale: {x: 0.027325714, y: 0.027325751, z: 0.048408404}
+  m_Children: []
+  m_Father: {fileID: 121668553}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.598}
+--- !u!212 &1400771531
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400771529}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1643972619
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: dfcaaba5e62c74041bbff52200730153, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 10.81, y: 6.77}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &1408518793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3206,7 +3293,7 @@ PrefabInstance:
     - target: {fileID: 4641278602422445939, guid: 239c9981691e2d441aeb6c3238cfad4a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.75
+      value: -7.06
       objectReference: {fileID: 0}
     - target: {fileID: 4641278602422445939, guid: 239c9981691e2d441aeb6c3238cfad4a,
         type: 3}
@@ -3455,7 +3542,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ad0be26d588420049911a5be2ece03a2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: adbe77930a0e532419e64fcb5c4233e8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3903,7 +3990,7 @@ PrefabInstance:
     - target: {fileID: 4641278602422445939, guid: 239c9981691e2d441aeb6c3238cfad4a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.57
+      value: -6.92
       objectReference: {fileID: 0}
     - target: {fileID: 4641278602422445939, guid: 239c9981691e2d441aeb6c3238cfad4a,
         type: 3}
@@ -4463,7 +4550,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 10, y: 10}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
